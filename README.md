@@ -24,4 +24,4 @@ resnet_main.py --bnsoftmax_scale 2.5 --eval_data_path=cifar10/test_batch.bin --l
 
 ##### CIFAR-100
 
-Change `--eval_data_path` accordingly,  and replace `--bnsoftmax_scale 2.5` with `--bnsoftmax_scale 1`.
+Change `--train_data_path` `--eval_data_path` accordingly,  and replace `--bnsoftmax_scale 2.5` with `--bnsoftmax_scale 1`.
