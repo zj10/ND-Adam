@@ -108,7 +108,7 @@ def train(hps):
                 self._lrn_rate = FLAGS.init_learning_rate *\
                                  0.5 * (1 + math.cos(math.pi * float(train_step) / cos_steps))
             elif train_step <= cos_steps + 5000:
-                self._lrn_rate = 1e-5
+                self._lrn_rate = 1e-7
             else:
                 exit(0)
 
@@ -202,7 +202,7 @@ def main(_):
 
     hps = resnet_model.HParams(batch_size=batch_size,
                                num_classes=num_classes,
-                               min_lrn_rate=1e-5,
+                               min_lrn_rate=1e-7,
                                lrn_rate=FLAGS.init_learning_rate,
                                num_residual_units=3,
                                use_bottleneck=False,
