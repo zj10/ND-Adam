@@ -171,7 +171,7 @@ class ResNet(object):
                     initializer=tf.constant_initializer(1.0, tf.float32))
 
             if self.mode == 'train':
-                mean, variance = tf.nn.moments(x, range(len(x.get_shape().as_list()) - 1), name='moments')
+                mean, variance = tf.nn.moments(x, tuple(range(len(x.get_shape().as_list()) - 1)), name='moments')
 
                 moving_mean = tf.get_variable(
                     'moving_mean', params_shape, tf.float32,
