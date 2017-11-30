@@ -24,9 +24,7 @@ class NDAdamOptimizer(tf.train.Optimizer):
             if v in vec_axes:
                 for i in vec_axes[v]:
                     v_shape[i] = 1
-                self.u[v] = tf.Variable(tf.zeros(v_shape), trainable=False)
-            else:
-                self.u[v] = tf.Variable(tf.zeros(v_shape), trainable=False)
+            self.u[v] = tf.Variable(tf.zeros(v_shape), trainable=False)
 
     def apply_gradients(self, gvs, global_step=None, name=None):
         update_ops = []
