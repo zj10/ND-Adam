@@ -1,0 +1,5 @@
+opencv-python
+nested_dict
+tqdm
+torchvision
+git+https://github.com/pytorch/tnt.git@master
