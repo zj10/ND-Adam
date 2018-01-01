@@ -5,7 +5,7 @@ This repository contains the code for the paper [Normalized Direction-preserving
 The code is based on a [TensorFlow implementation](https://github.com/tensorflow/models/tree/master/research/resnet) and a [PyTorch implementation](https://github.com/szagoruyko/wide-residual-networks/tree/master/pytorch) of wide residual networks.
 
 ## Usage
-####TensorFlow
+#### TensorFlow
 ##### CIFAR-10
 ```
 # Training
@@ -25,7 +25,7 @@ resnet_main.py --bnsoftmax_scale 2.5 --eval_data_path=cifar10/test_batch.bin --l
 
 Change `--train_data_path`,  `--eval_data_path`, and `--dataset` accordingly,  and replace `--bnsoftmax_scale 2.5` with `--bnsoftmax_scale 1`.
 
-####PyTorch
+#### PyTorch
 ##### CIFAR-10
 ```
 ## ND-Adam
