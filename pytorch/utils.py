@@ -1,7 +1,6 @@
 import torch
 import torch.cuda.comm as comm
-from torch.nn.init import constant
-from torch.nn.init import kaiming_normal
+from torch.nn.init import kaiming_normal_
 import torch.nn.functional as F
 from torch.nn.parallel._functions import Broadcast
 from torch.nn.parallel import scatter, parallel_apply, gather
@@ -19,11 +18,11 @@ def cast(params, dtype='float'):
 
 
 def conv_params(ni, no, k=1):
-    return cast(kaiming_normal(torch.Tensor(no, ni, k, k)))
+    return cast(kaiming_normal_(torch.Tensor(no, ni, k, k)))
 
 
 def linear_params(ni, no):
-    return cast({'weight': kaiming_normal(torch.Tensor(no, ni)), 'bias': torch.zeros(no)})
+    return cast({'weight': kaiming_normal_(torch.Tensor(no, ni)), 'bias': torch.zeros(no)})
 
 
 def bnparams(n):
@@ -69,8 +68,9 @@ def flatten_stats(stats):
 
 
 def batch_norm(x, params, stats, base, mode, const_scale=None):
+    Tensor = torch.cuda.FloatTensor if x.is_cuda else torch.FloatTensor
     return F.batch_norm(x, weight=params[base + '.weight'] if const_scale is None else Variable(
-        constant(torch.Tensor(x.size()[1]), const_scale)).cuda(),
+        Tensor(x.size(1)).fill_(const_scale)),
                         bias=params[base + '.bias'],
                         running_mean=stats[base + '.running_mean'],
                         running_var=stats[base + '.running_var'],

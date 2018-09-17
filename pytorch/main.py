@@ -1,13 +1,3 @@
-"""
-    PyTorch training code for Wide Residual Networks:
-    http://arxiv.org/abs/1605.07146
-
-    The code reproduces *exactly* it's lua version:
-    https://github.com/szagoruyko/wide-residual-networks
-
-    2016 Sergey Zagoruyko
-"""
-
 import argparse
 import os
 import json
@@ -43,7 +33,7 @@ parser.add_argument('--nthread', default=4, type=int)
 
 # Training options
 parser.add_argument('--batchSize', default=128, type=int)
-parser.add_argument('--lr', default=0.04, type=tuple)
+parser.add_argument('--lr', default=0.04, type=float)
 parser.add_argument('--epochs', default=200, type=int, metavar='N',
                     help='number of total epochs to run')
 parser.add_argument('--weightDecay', default=5e-6, type=float)
@@ -164,7 +154,7 @@ def main():
 
     def on_forward(state):
         classacc.add(state['output'].data, torch.LongTensor(state['sample'][1]))
-        meter_loss.add(state['loss'].data[0])
+        meter_loss.add(state['loss'].item())
 
     def on_start(state):
         state['epoch'] = epoch
