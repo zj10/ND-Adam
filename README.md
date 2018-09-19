@@ -9,12 +9,12 @@ The code is based on a [TensorFlow implementation](https://github.com/tensorflow
 ##### CIFAR-10
 ```
 ## ND-Adam
---dataroot ../cifar10 --save ./logs/resnet_model --depth 28 --width 10 --ngpu 1 --gpu_id 0
+main.py --depth 28 --width 10 --dataroot ../cifar10 --save ./logs/resnet_model --ngpu 1 --gpu_id 0
 ```
 ##### CIFAR-100
 ```
 ## ND-Adam
---dataset CIFAR100 --dataroot ../cifar100 --save ./logs/resnet_model --depth 28 --width 10 --ngpu 1 --gpu_id 0
+main.py --depth 28 --width 10 --dataset CIFAR100 --dataroot ../cifar100 --save ./logs/resnet_model --ngpu 1 --gpu_id 0
 ```
 
 #### TensorFlow
